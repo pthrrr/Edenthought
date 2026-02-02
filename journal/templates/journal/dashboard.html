@@ -1,0 +1,22 @@
+
+{% extends 'journal/navbar.html' %}
+
+{% block content %}
+
+    <br>
+
+    <div class="container bg-white shadow-md p-5 form-layout">
+
+        <h1>Dashboard</h1> 
+        
+        <a href="{% url 'user_logout' %}">Logout</a>
+        <br>
+        {{ user }} 
+        <br>
+        <br>
+        <img style="width:100px;" src="{{ profile_pic.profile_pic.url }}">
+    </div>
+
+{% endblock %}
+
+
