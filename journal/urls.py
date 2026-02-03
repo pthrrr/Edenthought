@@ -19,11 +19,11 @@ urlpatterns = [
     path('delete-account/', views.delete_account, name='delete_account'), 
 
     # Allow to enter email to receive a passwort reset link
-    path('reset-pasword/', auth_views.PasswordResetView.as_view(), name='reset_password'),
+    path('reset-password/', auth_views.PasswordResetView.as_view(template_name='journal/password-reset.html'), name='reset_password'),
     # show a success message after submitting the email
-    path('reset-password-sent/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('reset-password-sent/', auth_views.PasswordResetDoneView.as_view(template_name='journal/password-reset-sent.html'), name='password_reset_done'),
     # send a link to reset the password
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='journal/password-reset-form.html'), name='password_reset_confirm'),
     # show success message after resetting the password
-    path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='journal/password-reset-complete.html'), name='password_reset_complete'),
 ]
