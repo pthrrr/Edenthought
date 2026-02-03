@@ -12,6 +12,9 @@ from django.contrib.auth import logout
 
 from django.contrib.auth.decorators import login_required
 
+from django.core.mail import send_mail
+from django.conf import settings
+
 from . forms import CreateUserForm
 from . forms import LoginForm
 from . forms import ThoughtForm
@@ -33,6 +36,9 @@ def register(request):
             current_user = form.save(commit=False)
             form.save()
 
+            send_mail("Welcome to Thought Journal",
+                      "Hello " + current_user.username + ",\n\nThank you for registering at Thought Journal!",
+                        settings.EMAIL_HOST_USER, [current_user.email], fail_silently=True)
             profile = Profile.objects.create(user=current_user)
 
             messages.success(request, 'User created successfully!')
